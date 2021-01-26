@@ -18,7 +18,6 @@ using System.IO.Ports;
 using System.Globalization;
 using System.Net;
 
-
 namespace Camera_Record
 {
     public partial class Form1 : Form
