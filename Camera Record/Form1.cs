@@ -48,6 +48,7 @@ namespace Camera_Record
             OpenCamera();
         }
 
+    
         #region Open Scan Camera
         private void OpenCamera()
         {
