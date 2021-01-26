@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -94,6 +95,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\90_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\90_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\180_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\180_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\270_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\270_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save+icon-1320167995084087448.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_icon_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

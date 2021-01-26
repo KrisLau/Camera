@@ -33,7 +33,7 @@ namespace Camera_Record
         public frmAddDrugImage()
         {
             InitializeComponent();
-            getCameraList();
+            GetCameraList();
         }
 
         private static string m_UsbCamera;
@@ -42,14 +42,13 @@ namespace Camera_Record
             get { return m_UsbCamera; }
             set { m_UsbCamera = value; }
         }
-
+            
+        #region Methods
         private void btnStart_Click(object sender, EventArgs e)
         {
             OpenCamera();
         }
 
-    
-        #region Open Scan Camera
         private void OpenCamera()
         {        
             try
@@ -86,10 +85,8 @@ namespace Camera_Record
             }
 
         }
-        #endregion
-
-
-        //Delegate for capture, insert database, update picturebox 
+        
+        //Delegate for capture & update picturebox 
         public delegate void CaptureSnapshot(Bitmap image);
         public void UpdateCaptureSnapshot(Bitmap image)
         {
@@ -99,7 +96,7 @@ namespace Camera_Record
                 pbCapturedImage.Image = image;
                 pbCapturedImage.Update();
 
-               
+
                 string imageName = "sampleImage";
                 string captureName = imageName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".bmp";
 
@@ -141,7 +138,7 @@ namespace Camera_Record
             catch { }
         }
 
-        private void getCameraList()
+        private void GetCameraList()
         {
             m_VideoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
@@ -189,12 +186,9 @@ namespace Camera_Record
             }
             catch { }
         }
+        #endregion
 
-        private void btnCapture_Click(object sender, EventArgs e)
-        {
-            m_NeedSnapshot = true;
-        }
-
+        #region Event Handlers
         private void vspWebcam_NewFrame(object sender, ref Bitmap image)
         {
             try
@@ -215,6 +209,66 @@ namespace Camera_Record
             }
             catch
             { }
+        }
+
+        private void btnCapture_Click(object sender, EventArgs e)
+        {
+            m_NeedSnapshot = true;
+        }
+
+        private void pbRotate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbSave_Click(object sender, EventArgs e)
+        {
+            
+        }
+        #endregion
+
+        private void pictureBox_MouseHover(object sender, EventArgs e)
+        {
+            PictureBox pbSender = (PictureBox)sender;
+            switch (pbSender.Name)
+            {
+                case "pbRotate90":
+                    pbRotate90.Image = global::Camera_Record.Properties.Resources._90_hover;
+                    break;
+                case "pbRotate180":
+                    pbRotate180.Image = global::Camera_Record.Properties.Resources._180_hover;
+                    break;
+                case "pbRotate270":
+                    pbRotate270.Image = global::Camera_Record.Properties.Resources._270_hover;
+                    break;
+                case "pbSave":
+                    pbSave.Image = global::Camera_Record.Properties.Resources.save_icon_hover;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void pictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pbSender = (PictureBox)sender;
+            switch (pbSender.Name)
+            {
+                case "pbRotate90":
+                    pbRotate90.Image = global::Camera_Record.Properties.Resources._90_normal;
+                    break;
+                case "pbRotate180":
+                    pbRotate180.Image = global::Camera_Record.Properties.Resources._180_normal;
+                    break;
+                case "pbRotate270":
+                    pbRotate270.Image = global::Camera_Record.Properties.Resources._270_normal;
+                    break;
+                case "pbSave":
+                    pbSave.Image = global::Camera_Record.Properties.Resources.save_icon_1320167995084087448;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
