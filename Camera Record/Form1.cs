@@ -51,7 +51,7 @@ namespace Camera_Record
     
         #region Open Scan Camera
         private void OpenCamera()
-        {
+        {        
             try
             {
                 UsbCamera = cboVideoSources.SelectedIndex.ToString();
