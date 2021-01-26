@@ -1,6 +1,6 @@
 ﻿namespace Camera_Record
 {
-    partial class Form1
+    partial class frmAddDrugImage
     {
         /// <summary>
         /// Required designer variable.
@@ -116,7 +116,7 @@
             this.lblWebcam.TabIndex = 7;
             this.lblWebcam.Text = "Webcam";
             // 
-            // Form1
+            // frmAddDrugImage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,9 +129,9 @@
             this.Controls.Add(this.pbCapturedImage);
             this.Controls.Add(this.btnStart);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
+            this.Name = "frmAddDrugImage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Add Drug Image";
             ((System.ComponentModel.ISupportInitialize)(this.pbCapturedImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

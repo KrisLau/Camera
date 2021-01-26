@@ -20,7 +20,7 @@ using System.Net;
 
 namespace Camera_Record
 {
-    public partial class Form1 : Form
+    public partial class frmAddDrugImage : Form
     {
         private Stopwatch m_Stopwatch = null;
         private FilterInfoCollection m_VideoDevices;
@@ -30,7 +30,7 @@ namespace Camera_Record
         public string m_PathFolder = Application.StartupPath + @"\DrugImageCapture\";
         private static bool m_NeedSnapshot = false;
 
-        public Form1()
+        public frmAddDrugImage()
         {
             InitializeComponent();
             getCameraList();
