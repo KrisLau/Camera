@@ -22,6 +22,7 @@ namespace Camera_Record
 {
     public partial class frmAddDrugImage : Form
     {
+        private byte[] m_CurrentImage;
         private Stopwatch m_Stopwatch = null;
         private FilterInfoCollection m_VideoDevices;
         private VideoCaptureDevice m_VideoDevice;
@@ -42,7 +43,7 @@ namespace Camera_Record
             get { return m_UsbCamera; }
             set { m_UsbCamera = value; }
         }
-            
+
         #region Methods
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -62,7 +63,6 @@ namespace Camera_Record
                     foreach (FilterInfo device in m_VideoDevices)
                     {
                         m_ListCamera.Add(device.Name);
-
                     }
                 }
                 else
@@ -94,25 +94,13 @@ namespace Camera_Record
             {
                 m_NeedSnapshot = false;
                 pbCapturedImage.Image = image;
+                m_CurrentImage = imageToByteArray(pbCapturedImage.Image);
                 pbCapturedImage.Update();
-
-
-                string imageName = "sampleImage";
-                string captureName = imageName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".bmp";
-
-                if (Directory.Exists(m_PathFolder))
-                {
-                    pbCapturedImage.Image.Save(m_PathFolder + captureName, ImageFormat.Bmp);
-                }
-                else
-                {
-                    Directory.CreateDirectory(m_PathFolder);
-                    pbCapturedImage.Image.Save(m_PathFolder + captureName, ImageFormat.Bmp);
-                }
             }
-
-            catch { }
-
+            catch
+            {
+                // No implementation
+            }
         }
 
         public void OpenVideoSource(IVideoSource source)
@@ -135,7 +123,10 @@ namespace Camera_Record
 
                 this.Cursor = Cursors.Default;
             }
-            catch { }
+            catch
+            {
+                // No implementation
+            }
         }
 
         private void GetCameraList()
@@ -186,6 +177,20 @@ namespace Camera_Record
             }
             catch { }
         }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
         #endregion
 
         #region Event Handlers
@@ -216,16 +221,55 @@ namespace Camera_Record
             m_NeedSnapshot = true;
         }
 
-        private void pbRotate_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pbSave_Click(object sender, EventArgs e)
         {
-            
+            string imageName = "sampleImage";
+            string captureName = imageName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".bmp";
+            Image imageToSave = byteArrayToImage(m_CurrentImage);
+
+            if(imageToSave != null)
+            {
+                if (Directory.Exists(m_PathFolder))
+                {
+                    imageToSave.Save(m_PathFolder + captureName, ImageFormat.Bmp);
+                }
+                else
+                {
+                    Directory.CreateDirectory(m_PathFolder);
+                    imageToSave.Save(m_PathFolder + captureName, ImageFormat.Bmp);
+                }
+
+                MessageBox.Show("Image saved sucessfully as " + captureName, "Sucess");
+            }
+            else
+            {
+                MessageBox.Show("Image failed to save.", "Save Failed");
+            }
         }
-        #endregion
+
+        private void pbRotate_Click(object sender, EventArgs e)
+        {
+            PictureBox pbSender = (PictureBox)sender;
+            Image imageToFlip = byteArrayToImage(m_CurrentImage);
+
+            switch (pbSender.Name)
+            {
+                case "pbRotate90":
+                    imageToFlip.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    UpdateCaptureSnapshot((Bitmap)imageToFlip);
+                    break;
+                case "pbRotate180":
+                    imageToFlip.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    UpdateCaptureSnapshot((Bitmap)imageToFlip);
+                    break;
+                case "pbRotate270":
+                    imageToFlip.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    UpdateCaptureSnapshot((Bitmap)imageToFlip);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void pictureBox_MouseHover(object sender, EventArgs e)
         {
@@ -270,5 +314,6 @@ namespace Camera_Record
                     break;
             }
         }
+        #endregion
     }
 }

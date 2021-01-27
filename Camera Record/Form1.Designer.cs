@@ -114,6 +114,7 @@
             this.pbRotate270.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbRotate270.TabIndex = 32;
             this.pbRotate270.TabStop = false;
+            this.pbRotate270.Click += new System.EventHandler(this.pbRotate_Click);
             this.pbRotate270.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pbRotate270.MouseHover += new System.EventHandler(this.pictureBox_MouseHover);
             // 
@@ -127,6 +128,7 @@
             this.pbRotate180.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbRotate180.TabIndex = 31;
             this.pbRotate180.TabStop = false;
+            this.pbRotate180.Click += new System.EventHandler(this.pbRotate_Click);
             this.pbRotate180.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pbRotate180.MouseHover += new System.EventHandler(this.pictureBox_MouseHover);
             // 
