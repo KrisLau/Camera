@@ -46,12 +46,9 @@
             // 
             // vspWebcam
             // 
-            this.vspWebcam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.vspWebcam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.vspWebcam.Location = new System.Drawing.Point(22, 25);
             this.vspWebcam.Margin = new System.Windows.Forms.Padding(4);
-            this.vspWebcam.MaximumSize = new System.Drawing.Size(288, 216);
             this.vspWebcam.MinimumSize = new System.Drawing.Size(288, 216);
             this.vspWebcam.Name = "vspWebcam";
             this.vspWebcam.Size = new System.Drawing.Size(288, 216);
@@ -152,7 +149,6 @@
             this.pbCapturedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbCapturedImage.Location = new System.Drawing.Point(333, 25);
             this.pbCapturedImage.Margin = new System.Windows.Forms.Padding(4);
-            this.pbCapturedImage.MaximumSize = new System.Drawing.Size(288, 216);
             this.pbCapturedImage.MinimumSize = new System.Drawing.Size(288, 216);
             this.pbCapturedImage.Name = "pbCapturedImage";
             this.pbCapturedImage.Size = new System.Drawing.Size(288, 216);
@@ -175,6 +171,8 @@
             this.Controls.Add(this.pbCapturedImage);
             this.Controls.Add(this.btnStart);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(698, 352);
+            this.MinimumSize = new System.Drawing.Size(698, 352);
             this.Name = "frmAddDrugImage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Drug Image";
